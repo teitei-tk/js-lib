@@ -1,0 +1,19 @@
+{
+  "name": "coffee",
+  "version": "0.0.1",
+  "description": "",
+  "main": "Gruntfile.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/teitei-tk/js-lib.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teitei-tk/js-lib/issues"
+  },
+  "homepage": "https://github.com/teitei-tk/js-lib"
+}
