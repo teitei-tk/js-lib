@@ -140,7 +140,7 @@ do(w = window, $ = window.jQuery) ->
 
 
     App = $.extend {}, w.App
-    App.Util = $.extend App.Util, Util
+    App.Util = $.extend {}, App.Util, Util
     return
 
 do (w = window) ->

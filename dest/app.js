@@ -102,7 +102,7 @@
 
     })();
     App = $.extend({}, w.App);
-    App.Util = $.extend(App.Util, Util);
+    App.Util = $.extend({}, App.Util, Util);
   })(window, window.jQuery);
 
   (function(w) {
