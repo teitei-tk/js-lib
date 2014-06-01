@@ -17,7 +17,8 @@
       url: location.protocol + "//" + location.host,
       isDebug: location.hostname !== "example.co.jp"
     };
-    App.libVersion = {
+    App.version = {
+      app: "0.0.1",
       $: $(w).jquery
     };
     App.Util = {};
@@ -64,7 +65,7 @@
         return params;
       };
 
-      Util.getUrlParams = function(name) {
+      Util.getUrlParams = function() {
         return App.Util.parseUrlParams(w.location.href);
       };
 
@@ -113,7 +114,7 @@
           return console.log.bind(console);
         } else {
           text = Array.prototype.join.apply(arguments, [', ']);
-          alert(text);
+          return alert(text);
         }
       }
     };

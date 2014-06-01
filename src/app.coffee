@@ -26,8 +26,9 @@ do (w = window, $ = window.jQuery) ->
     #############################################
     # lib version
     #############################################
-    App.libVersion =
-        $ : $(w).jquery
+    App.version =
+        app : "0.0.1"
+        $   : $(w).jquery
 
     #############################################
     # utility
@@ -46,7 +47,6 @@ do(w = window, $ = window.jQuery) ->
         @LAZY_LOAD : true
         @WAIT_TIME : 2500
 
-
         #############################################
         # encode object
         #############################################
@@ -57,7 +57,6 @@ do(w = window, $ = window.jQuery) ->
             for i of param
                 query.push i + "=" + encodeURIComponent param[i]
             return url + "?" + query.join '&'
-
 
         #############################################
         # bind func
@@ -84,7 +83,7 @@ do(w = window, $ = window.jQuery) ->
         #############################################
         # get parameter
         #############################################
-        @getUrlParams = (name) ->
+        @getUrlParams = () ->
             return App.Util.parseUrlParams w.location.href
 
         #############################################
@@ -138,7 +137,6 @@ do(w = window, $ = window.jQuery) ->
                 .replace /&#39;/g, '\''
                 .replace /&#96;/g, '`'
 
-
     App = $.extend {}, w.App
     App.Util = $.extend {}, App.Util, Util
     return
@@ -154,8 +152,4 @@ do (w = window) ->
             else
                 text = Array.prototype.join.apply arguments, [', ']
                 alert text
-                return
     return
-
-
-            
