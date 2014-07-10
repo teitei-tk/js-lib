@@ -3,7 +3,7 @@ do ->
     # usasge:
     #   '{0}/{1}'.format hoge, fuga -> "hoge/fuga"
     #############################################
-    String.prototype.format = () ->
+    String::format = () ->
         args = arguments
         callback = (r, s) -> return args[parseInt(s, 10)]
         return this.replace /\{(\w+)\}/g, callback
