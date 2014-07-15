@@ -10,6 +10,27 @@
     };
   })();
 
+  (function() {
+    return Date.prototype.format = function(format) {
+      var i, length, milliSeconds, _i;
+      format = format.replace(/YYYY/g, this.getFullYear());
+      format = format.replace(/YY/g, ("" + this.getFullYear()).slice(2, 4));
+      format = format.replace(/MM/g, ('0' + (this.getMonth() + 1)).slice(-2));
+      format = format.replace(/DD/g, ('0' + this.getDate()).slice(-2));
+      format = format.replace(/hh/g, ('0' + this.getHours()).slice(-2));
+      format = format.replace(/mm/g, ('0' + this.getMinutes()).slice(-2));
+      format = format.replace(/ss/g, ('0' + this.getSeconds()).slice(-2));
+      if (format.match(/S/g)) {
+        milliSeconds = ('00' + this.getMilliseconds()).slice(-3);
+        length = format.match(/S/g).length;
+        for (i = _i = 0; 0 <= length ? _i < length : _i > length; i = 0 <= length ? ++_i : --_i) {
+          format.replace(/S/, milliSeconds.substring(i, i + 1));
+        }
+      }
+      return format;
+    };
+  })();
+
   (function(w, $) {
     var App;
     App = $.extend({}, w.App);
