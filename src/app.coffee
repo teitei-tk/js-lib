@@ -151,6 +151,20 @@ do(w = window, $ = window.jQuery) ->
                 .replace /&quot;/g, '"'
                 .replace /&#39;/g, '\''
                 .replace /&#96;/g, '`'
+
+        #############################################
+        # trim at string width 
+        #
+        # usasge:
+        #   App.Util.strimwidth("hoge", 3) -> h...
+        #############################################
+        @strimwidth = (text, splitCnt = 30, widthStr = "...") ->
+            cnt = text.length
+            if cnt <= splitCnt
+                return text
+            newText = text.substr(0, splitCnt)
+            return newText + widthStr
+
     App.Util = Util
 
 do (w = window) ->

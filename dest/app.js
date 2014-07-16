@@ -119,6 +119,22 @@
         return (text + "").replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, '\'').replace(/&#96;/g, '`');
       };
 
+      Util.strimwidth = function(text, splitCnt, widthStr) {
+        var cnt, newText;
+        if (splitCnt == null) {
+          splitCnt = 30;
+        }
+        if (widthStr == null) {
+          widthStr = "...";
+        }
+        cnt = text.length;
+        if (cnt <= splitCnt) {
+          return text;
+        }
+        newText = text.substr(0, splitCnt);
+        return newText + widthStr;
+      };
+
       return Util;
 
     })();
