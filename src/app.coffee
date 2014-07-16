@@ -50,11 +50,6 @@ do (w = window, $ = window.jQuery) ->
         app : "0.0.1"
         $   : $(w).jquery
 
-    #############################################
-    # utility
-    #############################################
-    App.Util = {}
-
     w.App = App
     return
 
@@ -156,10 +151,7 @@ do(w = window, $ = window.jQuery) ->
                 .replace /&quot;/g, '"'
                 .replace /&#39;/g, '\''
                 .replace /&#96;/g, '`'
-
-    App = $.extend {}, w.App
-    App.Util = $.extend {}, App.Util, Util
-    return
+    App.Util = Util
 
 do (w = window) ->
     #############################################

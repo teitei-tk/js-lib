@@ -42,12 +42,11 @@
       app: "0.0.1",
       $: $(w).jquery
     };
-    App.Util = {};
     w.App = App;
   })(window, window.jQuery);
 
   (function(w, $) {
-    var App, Util;
+    var Util;
     Util = (function() {
       function Util() {}
 
@@ -123,8 +122,7 @@
       return Util;
 
     })();
-    App = $.extend({}, w.App);
-    App.Util = $.extend({}, App.Util, Util);
+    return App.Util = Util;
   })(window, window.jQuery);
 
   (function(w) {
