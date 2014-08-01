@@ -180,4 +180,12 @@ do (w = window) ->
                 item = JSON.stringify(value)
             @storage.setItem(key, item)
 
+        remove: (key) ->
+            @storage.removeItem(key)
+
+        pop: (key) ->
+            result = @get(key)
+            @remove(key)
+            return result
+
     w.StorageManager = new StorageManager
