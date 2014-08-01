@@ -9,6 +9,26 @@ do ->
         return this.replace /\{(\w+)\}/g, callback
     return
 
+do ->
+    #############################################
+    # usasge:
+    #   new Date().format("YY/MM/DD") -> 14/07/15
+    #############################################
+    Date::format = (format) ->
+        format = format.replace /YYYY/g, @.getFullYear()
+        format = format.replace /YY/g, ( "" + @.getFullYear() ).slice(2, 4)
+        format = format.replace /MM/g, ('0' + (@.getMonth() + 1)).slice(-2)
+        format = format.replace /DD/g, ('0' + @.getDate()).slice(-2)
+        format = format.replace /hh/g, ('0' + @.getHours()).slice(-2)
+        format = format.replace /mm/g, ('0' + @.getMinutes()).slice(-2)
+        format = format.replace /ss/g, ('0' + @.getSeconds()).slice(-2)
+        if format.match /S/g
+            milliSeconds = ('00' + @.getMilliseconds()).slice(-3)
+            length = format.match(/S/g).length
+            format.replace /S/, milliSeconds.substring(i, i + 1) for i in [0...length]
+        return format
+
+
 do (w = window, $ = window.jQuery) ->
     #############################################
     # global object
@@ -29,11 +49,6 @@ do (w = window, $ = window.jQuery) ->
     App.version =
         app : "0.0.1"
         $   : $(w).jquery
-
-    #############################################
-    # utility
-    #############################################
-    App.Util = {}
 
     w.App = App
     return
@@ -137,9 +152,20 @@ do(w = window, $ = window.jQuery) ->
                 .replace /&#39;/g, '\''
                 .replace /&#96;/g, '`'
 
-    App = $.extend {}, w.App
-    App.Util = $.extend {}, App.Util, Util
-    return
+        #############################################
+        # trim at string width 
+        #
+        # usasge:
+        #   App.Util.strimwidth("hoge", 3) -> h...
+        #############################################
+        @strimwidth = (text, splitCnt = 30, widthStr = "...") ->
+            cnt = text.length
+            if cnt <= splitCnt
+                return text
+            newText = text.substr(0, splitCnt)
+            return newText + widthStr
+
+    App.Util = Util
 
 do (w = window) ->
     #############################################
