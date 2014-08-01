@@ -120,4 +120,43 @@
     };
   })(window);
 
+  (function(w) {
+    var StorageManager;
+    if (!w.localStorage) {
+      w.log("localStorage is not support");
+      return;
+    }
+    StorageManager = (function() {
+      function StorageManager() {
+        this.storage = w.localStorage;
+      }
+
+      StorageManager.prototype.get = function(key) {
+        var SyntaxError, item, result;
+        item = this.storage.getItem(key);
+        result = null;
+        try {
+          result = JSON.parse(item);
+        } catch (_error) {
+          SyntaxError = _error;
+          result = item;
+        }
+        return result;
+      };
+
+      StorageManager.prototype.set = function(key, value) {
+        var item;
+        item = value;
+        if (value instanceof Array || value instanceof Object) {
+          item = JSON.stringify(value);
+        }
+        return this.storage.setItem(key, item);
+      };
+
+      return StorageManager;
+
+    })();
+    return w.StorageManager = new StorageManager;
+  })(window);
+
 }).call(this);

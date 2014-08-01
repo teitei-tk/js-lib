@@ -153,3 +153,31 @@ do (w = window) ->
                 text = Array.prototype.join.apply arguments, [', ']
                 alert text
     return
+
+do (w = window) ->
+    if not w.localStorage
+        w.log "localStorage is not support"
+        return
+
+    class StorageManager
+        constructor: ->
+            @storage = w.localStorage
+
+        get: (key)  ->
+            item = @storage.getItem(key)
+
+            result = null
+            try
+                result = JSON.parse(item)
+            catch SyntaxError
+                result = item
+
+            return result
+
+        set: (key, value) ->
+            item = value
+            if value instanceof Array or value instanceof Object
+                item = JSON.stringify(value)
+            @storage.setItem(key, item)
+
+    w.StorageManager = new StorageManager
